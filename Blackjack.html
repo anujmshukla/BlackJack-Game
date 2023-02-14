@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Blackjack</title>
+<style>
+    body{
+        background-image: url("https://thumbs.dreamstime.com/b/poker-table-casino-top-view-green-chips-cards-dices-background-copy-space-197894948.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        text-align: center;
+    }
+    .Abc{
+        font-size: 100px;
+    }
+    .button1{
+        font-size: 20px;
+        background-color: aqua;
+        color : red;
+        font-weight: bold;
+    }
+    .button2{
+        font-size: 20px;
+        background-color: rgb(213, 231, 56);
+        color : red;
+        font-weight: bold;
+    }
+    .data{
+        font-weight: bold;
+    }
+    .transbox {
+        background-color: rgba(255, 255, 255, 0.4);
+        -webkit-backdrop-filter: blur(5px);
+        backdrop-filter: blur(5px);
+        padding: 210px;
+        margin: 0px;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+    <div class="transbox">
+    <h1>Blackjack</h1>
+    <h3>Card:</h3>
+    <div id="cardata" class="data">
+        0
+    </div>
+    <h3>Total:</h3>
+    <div id="total" class="data">
+        0
+    </div>
+    <br>
+    <br>
+    <br>
+    <input type="button" value="Start" onclick="Start()" class="button1">
+    <input type="button" value="New Card" onclick="NewCard()" class="button2">
+    <h3>Money: </h3>
+    <div id="money" class="data">
+        
+    </div>
+    </div>
+<script>
+    var money =400;
+    var sum =0;
+    var data = 0;
+    var money = 400;
+    click=0
+    finish=0
+    function Start()
+    {
+        if(click==0)
+        {
+            sum =0;
+            data = 0;
+            data = Math.floor(Math.random() * (13 - 1 + 1) + 1);
+            sum = data+sum;
+            // document.write(data);
+            document.getElementById("total").innerHTML= data;
+            document.getElementById("cardata").innerHTML= data+",   ";
+            document.getElementById("money").innerHTML= money;
+            click=1;
+            finish=0;
+        }
+        else
+        {
+            alert("Refresh Page For New Game");
+        }
+    }
+    function NewCard()
+    {
+        
+        if(finish==0)
+        {
+            data = Math.floor(Math.random() * (13 - 1 + 1) + 1);
+            sum = data+sum;
+            //document.write(sum);
+            temp = document.getElementById("cardata").innerHTML;
+            temp2=temp+data+",   ";
+            //document.write();
+            document.getElementById("cardata").innerHTML=temp2;
+            document.getElementById("total").innerHTML= sum;
+            if(sum > 20)
+            {
+                if(sum==21)
+                {
+                    alert("you win the game, money added to your account \n now you can start new game ");
+                    click=0;
+                    money = money+100;
+                    document.getElementById("money").innerHTML =money;
+                    finish=1;
+                }
+            else
+                {
+                    alert("you loos the game, Moeny debited from your acount \n now you can start new game ");
+                    money = money-100;
+                    document.getElementById("money").innerHTML = money;
+                    click=0;
+                    finish=1;
+                }
+         
+            }   
+        }
+        else
+        {
+            alert("start new game")
+        }
+    }
+    
+</script>
+</body>
+</html>
